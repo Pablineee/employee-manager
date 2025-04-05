@@ -9,6 +9,7 @@ dotenv.config();
 const verifyAuth = require('../utils/verifyAuth');
 const validateEmail = require('../utils/validateEmail');
 const validDate = require('../utils/validDate');
+const formatDate = require('../utils/formatDate');
 
 const employeeResolver = {
     Query: {
@@ -57,6 +58,7 @@ const employeeResolver = {
 
 
             try {
+                const formattedDate = formatDate(date_of_joining);
 
                 // Confirm that an employee with that E-mail address does not already exist
                 const existingEmployee = await Employee.findOne({ email });
@@ -84,7 +86,7 @@ const employeeResolver = {
                     gender,
                     designation,
                     salary,
-                    date_of_joining: new Date(date_of_joining),
+                    date_of_joining: formattedDate,
                     department,
                     employee_photo
                 });
@@ -116,7 +118,6 @@ const employeeResolver = {
             verifyAuth(context);
 
             try {
-
                 // Check if employee exists in MongoDB collection
                 const employee = await Employee.findById(id);
 
@@ -132,14 +133,8 @@ const employeeResolver = {
                 if (designation) employee.designation = designation;
                 if (salary) employee.salary = salary;
                 if (date_of_joining){
-                    // Validate date format
-                    const dateValid = validDate(date_of_joining);
-                    if (!dateValid){
-                        throw new Error('Invalid date format for date of joining');
-                    }
-
-                    // Update value
-                    employee.date_of_joining = Date(date_of_joining);
+                    // Validate and format date
+                    employee.date_of_joining = formatDate(date_of_joining);
                 };
                 if (department) employee.department = department;
                 if (employee_photo) employee.employee_photo = employee_photo;
