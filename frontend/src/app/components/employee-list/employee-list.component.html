@@ -2,7 +2,7 @@
     <div class="employee-list-container">
       <div class="header-container">
           <h1 class="text-center">Employees</h1>
-          <button class="btn btn-secondary" (click)="addEmployee()">Add Employee</button>
+          <button class="btn btn-secondary" (click)="openAddEmployeeModal()">Add Employee</button>
       </div>
         <table class="table table-striped">
           <thead>
@@ -28,7 +28,7 @@
               <td class="data">{{ employee.gender }}</td>
               <td class="data">{{ employee.designation }}</td>
               <td class="data">${{ employee.salary }}</td>
-              <td class="data">{{ employee.date_of_joining }}</td> <!-- TODO: Convert to YYYY-MM-DD format -->
+              <td class="data">{{ employee.date_of_joining | date: 'yyyy-MM-dd' }}</td>
               <td class="data">{{ employee.department }}</td>
               <td>
                 <button class="btn btn-warning" (click)="updateEmployee(employee.id)">Update</button>
@@ -38,4 +38,58 @@
           </tbody>
         </table>
     </div>
+</div>
+
+<!-- Add Employee Modal -->
+<div class="modal" *ngIf="showAddEmployeeModal">
+  <div class="modal-content">
+    <h2>Add New Employee</h2>
+    <form (ngSubmit)="submitAddEmployee()">
+      <label>First Name</label>
+      <input type="text" [(ngModel)]="newEmployee.first_name" name="first_name" required />
+
+      <label>Last Name</label>
+      <input type="text" [(ngModel)]="newEmployee.last_name" name="last_name" required />
+
+      <label>Email</label>
+      <input type="email" [(ngModel)]="newEmployee.email" name="email" required />
+
+      <label>Gender</label>
+      <select [(ngModel)]="newEmployee.gender" name="gender" required>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label>Designation</label>
+      <input type="text" [(ngModel)]="newEmployee.designation" name="designation" required />
+
+      <label>Salary</label>
+      <input type="number" [(ngModel)]="newEmployee.salary" name="salary" required />
+
+      <label>Date of Joining</label>
+      <input type="date" [(ngModel)]="newEmployee.date_of_joining" name="date_of_joining" required />
+
+      <label>Department</label>
+      <select [(ngModel)]="newEmployee.department" name="department" required>
+        <option value="IT Operations">IT Operations</option>
+        <option value="Design">Design</option>
+        <option value="Engineering">Engineering</option>
+        <option value="Data & Analytics">Data & Analytics</option>
+        <option value="Human Resources">Human Resources</option>
+        <option value="Finance">Finance</option>
+        <option value="Marketing">Marketing</option>
+        <option value="Sales">Sales</option>
+        <option value="Quality Assurance">Quality Assurance</option>
+        <option value="Security">Security</option>
+        <option value="Customer Support">Customer Support</option>
+      </select>
+
+      <label>Employee Photo URL</label>
+      <input type="text" [(ngModel)]="newEmployee.employee_photo" name="employee_photo" />
+
+      <button type="submit">Add Employee</button>
+      <button type="button" (click)="closeAddEmployeeModal()">Cancel</button>
+    </form>
+  </div>
 </div>
