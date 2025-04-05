@@ -18,5 +18,5 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = '101153741_comp3133_assignment2';
+  title = 'Employee Manager';
 }

@@ -2,7 +2,7 @@
     <div class="employee-list-container">
       <div class="header-container">
           <h1 class="text-center">Employees</h1>
-          <button class="btn btn-secondary">Add Employee</button>
+          <button class="btn btn-secondary" (click)="addEmployee()">Add Employee</button>
       </div>
         <table class="table table-striped">
           <thead>
@@ -31,8 +31,8 @@
               <td class="data">{{ employee.date_of_joining }}</td> <!-- TODO: Convert to YYYY-MM-DD format -->
               <td class="data">{{ employee.department }}</td>
               <td>
-                <button class="btn btn-warning">Update</button>
-                <button class="btn btn-danger">Delete</button>
+                <button class="btn btn-warning" (click)="updateEmployee(employee.id)">Update</button>
+                <button class="btn btn-danger" (click)="deleteEmployee(employee.id)">Delete</button>
               </td>
             </tr>
           </tbody>

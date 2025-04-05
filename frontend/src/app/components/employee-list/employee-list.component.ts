@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-employee-list',
   imports: [CommonModule],
   templateUrl: './employee-list.component.html',
-  styleUrl: './employee-list.component.css'
+  styleUrls: ['./employee-list.component.css']
 })
 export class EmployeeListComponent {
   employees: any[] = [];
@@ -63,5 +63,20 @@ export class EmployeeListComponent {
         console.error('Error fetching employees', error.message);
       }
     });
+  }
+
+  addEmployee(): void {
+    // Logic to create a new employee
+    console.log('Create Employee button clicked');
+  }
+
+  updateEmployee(employeeId: string): void {
+    // Logic to update an employee
+    console.log(`Update Employee button clicked for ID: ${employeeId}`);
+  }
+
+  deleteEmployee(employeeId: string): void {
+    // Logic to delete an employee
+    console.log(`Delete Employee button clicked for ID: ${employeeId}`);
   }
 }
