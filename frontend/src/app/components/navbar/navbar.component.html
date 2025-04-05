@@ -1,0 +1,8 @@
+<nav [ngClass]="{ 'employee-navbar': isEmployeePage }" class="navbar navbar-light">
+  <a class="navbar-brand" [routerLink]="getLogoRoute()">
+    <img src="/assets/employee.png" alt="Employee Plus">
+  </a>
+  <div class="logout-container">
+    <button *ngIf="isEmployeePage" class="btn btn-secondary" (click)="logout()">Logout</button>
+  </div>
+</nav>

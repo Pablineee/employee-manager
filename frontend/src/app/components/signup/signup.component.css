@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+.signup-container {
+    height: 92.4vh;
+    background: linear-gradient(to bottom right, #2c3e50, #4a6070);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* Dark overlay for the blurred effect */
+.signup-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    z-index: 1;
+}
+
+/* Card styling */
+.signup-card {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 60%;
+    border-radius: 15px;
+    height: auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    background-image: linear-gradient(320deg, #c1c6ca98, #525d755b);
+    backdrop-filter: blur(5px);
+}
+
+.signup-card .form {
+    margin-top: 2em;
+    margin-right:auto;
+    margin-left:auto;
+    display: flex;
+    max-width: 90%;
+    flex-direction: column;
+}
+
+/* Registration form */
+.signup-card .form-control {
+    height: 40px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 10px;
+    padding-left: 40px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    max-width: 100%;
+}
+
+.signup-card .col-md-7 {
+    padding: 30px;
+    flex: 1 1 100%;
+}
+
+.signup-card .text-center h2 {
+    font-size: 3rem;
+    font-family: "Outfit", sans-serif;
+    font-weight: 400;
+    margin-top: 5px;
+    font-style: normal;
+    color: rgb(255, 255, 255);
+}
+
+.signup-card .text-center p {
+    font-size: 1.5em;
+    color: rgb(236, 236, 214);
+    margin-bottom: 40px;
+}
+
+.signup-card .btn-primary {
+    background: linear-gradient(90deg, #30455c, #354658);
+    border: none;
+    font-size: 1.25rem;
+    margin-top: 4%;
+    padding: 12px 20px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+}
+
+.signup-card .btn-primary:hover {
+    background: linear-gradient(90deg, #5a6e83, #484e55be);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.already-account {
+    font-size: 1.5rem;
+    color: #d6dbdff5;
+}
+
+.already-account .login-link {
+    color: #253e63b7;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.75rem;
+    transition: color 0.3s ease;
+    padding-left: 3px;
+}
+
+.already-account .login-link:hover {
+    color: #1a232e;
+    text-decoration: none;
+}
+
+@media (min-width: 768px) {
+    .login-card {
+        flex-wrap: nowrap;
+    }
+  
+    .login-card .col-md-7,
+    .login-card .bg-primary {
+        flex: 1 1 50%;
+    }
+}
+
+@media (max-width: 767px) {
+    .login-card {
+        flex-wrap: wrap;
+    }
+
+    .login-card .col-md-7,
+    .login-card .bg-primary {
+        flex: 1 1 100%;
+    }
+
+    .login-card .col-md-7 {
+        padding: 20px;
+        margin-bottom: 10px;
+    }
+
+    .login-card .bg-primary h3 {
+        padding-top: 20px;
+        text-align: center;
+    }
+
+    .login-card .btn-light {
+        margin-bottom: 1px;
+    }
+
+    .login-card .bg-primary {
+        padding: 20px;
+        margin-bottom: 0;
+        height: auto;
+        min-height: 100%;
+    }
+}
+
+@media (max-width: 575px) {
+    .signup-container {
+        padding: 5px;
+    }
+
+    .signup-card {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .signup-card .form {
+        max-width: 100%;
+    }
+
+    .signup-card .form-control {
+        font-size: 12px;
+        padding-left: 15px;
+    }
+
+    .signup-card .text-center h2 {
+        font-size: 1.8rem;
+    }
+
+    .signup-card .text-center p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    .signup-card .btn-primary {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+
+    .already-account {
+        font-size: 1rem;
+    }
+
+    .already-account .login-link {
+        font-size: 1.2rem;
+    }
+}

@@ -1,0 +1,47 @@
+<div class="login-container d-flex align-items-center justify-content-center">
+    <div class="login-card row shadow-lg">
+      <!-- Login Form -->
+      <div class="col-md-7 p-5">
+        <div class="text-center mb-4">
+          <h2 class="fw-bold">Member Login</h2>
+          <p class="text-custom">Login using your username and password</p>
+        </div>
+        <form class="form" (ngSubmit)="login()">
+          <div class="form-group mb-4">
+            <input
+              type="text"
+              class="form-control rounded-pill"
+              id="username"
+              placeholder="Username"
+              [(ngModel)]="username"
+              name="username"
+            />
+          </div>
+          <div class="form-group mb-4">
+            <input
+              type="password"
+              class="form-control rounded-pill"
+              id="password"
+              [(ngModel)]="password"
+              name="password"
+              placeholder="Password"
+            />
+          </div>
+          <button type="" class="btn btn-primary w-100 rounded-pill">
+            Sign In
+          </button>
+        </form>
+      </div>
+  
+      <!-- Signup Redirect -->
+      <div class="col-md-5 bg-primary text-white d-flex flex-column align-items-center justify-content-center p-5">
+        <h3 class="fw-bold">New Here?</h3>
+        <p class="text-center">
+            Your smarter way to manage employee data<br> — effortlessly.
+        </p>
+        <a href="/signup" class="btn btn-light rounded-pill px-4 py-2">
+          Register
+        </a>
+      </div>
+    </div>
+  </div>
