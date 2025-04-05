@@ -69,6 +69,10 @@ const userResolver = {
                 }
 
                 // Confirm that password is valid
+                if (!password || typeof password !== 'string') {
+                    throw new Error('Password is invalid or missing');
+                }
+
                 const passwordValid = validatePassword(password);
                 if (!passwordValid){
                     throw new Error('Password must contain at least one uppercase letter, one special character, and be between 8 and 64 characters long');

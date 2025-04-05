@@ -19,6 +19,12 @@ export class SignupComponent {
   constructor(private http: HttpClient, private router: Router) {}
 
   register(): void {
+    // Check if password and confirmPassword are empty
+    if (!this.password || !this.confirmPassword) {
+      alert('Password and Confirm Password fields cannot be empty!');
+      return;
+    }
+
     if (this.password !== this.confirmPassword) {
       alert('Passwords do not match!');
       return;
