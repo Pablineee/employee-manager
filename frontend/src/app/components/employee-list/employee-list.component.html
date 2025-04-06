@@ -31,8 +31,8 @@
               <td class="data">{{ employee.date_of_joining | date: 'yyyy-MM-dd' }}</td>
               <td class="data">{{ employee.department }}</td>
               <td>
-                <button class="btn btn-warning" (click)="updateEmployee(employee.id)">Update</button>
-                <button class="btn btn-danger" (click)="deleteEmployee(employee.id)">Delete</button>
+                <button class="btn btn-warning" (click)="openEditEmployeeModal(employee.id)">Update</button>
+                <button class="btn btn-danger" (click)="openDeleteEmployeeModal(employee.id)">Delete</button>
               </td>
             </tr>
           </tbody>
@@ -85,11 +85,77 @@
         <option value="Customer Support">Customer Support</option>
       </select>
 
-      <label>Employee Photo URL</label>
-      <input type="text" [(ngModel)]="newEmployee.employee_photo" name="employee_photo" />
+      <label>Employee Photo</label>
+      <input type="file" [(ngModel)]="newEmployee.employee_photo" name="employee_photo" />
 
       <button type="submit">Add Employee</button>
       <button type="button" (click)="closeAddEmployeeModal()">Cancel</button>
+    </form>
+  </div>
+</div>
+
+<!-- Edit Employee Modal -->
+<div class="modal" *ngIf="showEditEmployeeModal">
+  <div class="modal-content">
+    <h2>Update Employee</h2>
+    <form (ngSubmit)="submitEditEmployee()">
+      <label>First Name</label>
+      <input type="text" [(ngModel)]="editEmployee.first_name" name="first_name" />
+
+      <label>Last Name</label>
+      <input type="text" [(ngModel)]="editEmployee.last_name" name="last_name" />
+
+      <label>Email</label>
+      <input type="email" [(ngModel)]="editEmployee.email" name="email" />
+
+      <label>Gender</label>
+      <select [(ngModel)]="editEmployee.gender" name="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label>Designation</label>
+      <input type="text" [(ngModel)]="editEmployee.designation" name="designation" />
+
+      <label>Salary</label>
+      <input type="number" [(ngModel)]="editEmployee.salary" name="salary" />
+
+      <label>Date of Joining</label>
+      <input type="date" [(ngModel)]="editEmployee.date_of_joining" name="date_of_joining" />
+
+      <label>Department</label>
+      <select [(ngModel)]="editEmployee.department" name="department">
+        <option value="IT Operations">IT Operations</option>
+        <option value="Design">Design</option>
+        <option value="Engineering">Engineering</option>
+        <option value="Data & Analytics">Data & Analytics</option>
+        <option value="Human Resources">Human Resources</option>
+        <option value="Finance">Finance</option>
+        <option value="Marketing">Marketing</option>
+        <option value="Sales">Sales</option>
+        <option value="Quality Assurance">Quality Assurance</option>
+        <option value="Security">Security</option>
+        <option value="Customer Support">Customer Support</option>
+      </select>
+
+      <label>Employee Photo</label>
+      <input type="file" [(ngModel)]="editEmployee.employee_photo" name="employee_photo" />
+
+      <button type="submit">Update Employee</button>
+      <button type="button" (click)="closeEditEmployeeModal()">Cancel</button>
+    </form>
+  </div>
+</div>
+
+<!-- Delete Employee Modal -->
+<div class="modal" *ngIf="showDeleteEmployeeModal">
+  <div class="modal-content">
+    <h2>Confirm Employee</h2>
+    <form (ngSubmit)="submitDeleteEmployee()">
+      <p class="delete-text">Are you sure you want to permanently delete the employee?</p>
+      <button type="submit">Confirm</button>
+      <button type="button" (click)="closeDeleteEmployeeModal()">Cancel</button>
     </form>
   </div>
 </div>

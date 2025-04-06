@@ -91,7 +91,7 @@ tr:nth-child(even) {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(14, 21, 29, 0.9);
+    background-color: rgba(80, 98, 119, 0.9);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -99,86 +99,7 @@ tr:nth-child(even) {
 }
 
 .modal-content {
-    background: linear-gradient(to bottom right, #d8dadd98, #070f1daf);
-    padding: 20px;
-    border-radius: 10px;
-    width: 500px;
-    max-width: 90%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: 1px solid #2c3e50;
-    color: #172741ef;
-    font-family: 'Outfit', sans-serif;
-}
-
-.modal-content h2 {
-    margin-top: 0;
-    font-size: 2rem;
-    font-weight: 300;
-    color: #2c3e50;
-    text-align: center;
-}
-
-.modal-content form {
-    display: flex;
-    flex-direction: column;
-}
-
-.modal-content form label {
-    margin-top: 10px;
-    font-size: 1.2rem;
-    color: #2c3e50;
-}
-
-.modal-content form input,
-.modal-content form select {
-    margin-top: 5px;
-    padding: 10px;
-    border: 1px solid #2c3e50;
-    border-radius: 5px;
-    font-size: 1rem;
-    background-color: #f2f2f2;
-    color: #333;
-}
-
-.modal-content form button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.modal-content form button[type="submit"] {
-    background-color: #2c3e50;
-    color: #fff;
-}
-
-.modal-content form button[type="button"] {
-    background-color: #f2f2f2;
-    color: #333;
-    margin-left: 10px;
-}
-
-.modal-content form button:hover {
-    opacity: 0.9;
-}
-
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(14, 21, 29, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.modal-content {
-    background: linear-gradient(to bottom right, #d8dadd98, #070f1daf);
+    background: linear-gradient(to bottom right, #47495083, #757b86af);
     padding: 20px;
     border-radius: 10px;
     width: 500px;
@@ -188,13 +109,15 @@ tr:nth-child(even) {
     color: #172741ef;
     font-family: 'Outfit', sans-serif;
     font-size: 2em;
+    padding-left: 3%;
+    padding-right: 3%;
 }
 
 .modal-content h2 {
     margin-top: 0;
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 300;
-    color: #2c3e50;
+    color: #d1dae2;
     text-align: center;
 }
 
@@ -205,8 +128,8 @@ tr:nth-child(even) {
 
 .modal-content form label {
     margin-top: 10px;
-    font-size: 1.2rem;
-    color: #2c3e50;
+    font-size: 1.4rem;
+    color: #d6dadd;
 }
 
 .modal-content form input,
@@ -223,25 +146,31 @@ tr:nth-child(even) {
 .modal-content form button {
     margin-top: 15px;
     padding: 10px 20px;
-    font-size: 1rem;
+    font-size: 1.3rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .modal-content form button[type="submit"] {
-    background-color: #2c3e50;
+    background-color: #2c3e50ad;
     color: #fff;
 }
 
 .modal-content form button[type="button"] {
     background-color: #f2f2f2;
     color: #333;
-    margin-left: 10px;
 }
 
 .modal-content form button:hover {
-    opacity: 0.9;
+    opacity: 0.85;
+}
+
+.modal-content .delete-text {
+    font-size: 2rem;
+    margin-top: 10px;
+    color: #051f33;
+    text-align: center;
 }
 
 /* Responsive adjustments */
@@ -256,5 +185,24 @@ tr:nth-child(even) {
 
     th, td {
         padding: 8px;
+    }
+
+    .header-container .btn {
+        font-size: 1.2rem;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    .header-container .btn {
+        font-size: 0.5rem;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 495px) {
+    .header-container .btn {
+        font-size: 0.4rem;
+        padding: 8px 12px;
     }
 }

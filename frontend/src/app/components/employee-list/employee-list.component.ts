@@ -16,6 +16,13 @@ export class EmployeeListComponent {
   apiUrl: string = 'http://localhost:4000/graphql';
   showAddEmployeeModal: boolean = false;
   newEmployee: any = {};
+  showEditEmployeeModal: boolean = false;
+  editEmployeeId: string = '';
+  editEmployee: any = {};
+  showDeleteEmployeeModal: boolean = false;
+  deleteEmployeeId: string = '';
+  showEmployeeDetailsModal: boolean = false;
+  employeeDetails: any = {};
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -69,6 +76,8 @@ export class EmployeeListComponent {
       }
     });
   }
+
+  // Add new employee - Begin
 
   openAddEmployeeModal(): void {
     this.showAddEmployeeModal = true;
@@ -177,13 +186,208 @@ export class EmployeeListComponent {
     });
   }
 
-  updateEmployee(employeeId: string): void {
-    // Logic to update an employee
-    console.log(`Update Employee button clicked for ID: ${employeeId}`);
+  // Add new employee - End
+
+  // Update Existing employee - Begin
+
+  openEditEmployeeModal(employeeId: string): void {
+    this.showAddEmployeeModal = false;
+    this.editEmployeeId = employeeId;
+    this.showEditEmployeeModal = true;
+    this.showDeleteEmployeeModal = false;
   }
 
-  deleteEmployee(employeeId: string): void {
-    // Logic to delete an employee
-    console.log(`Delete Employee button clicked for ID: ${employeeId}`);
+  closeEditEmployeeModal(): void {
+    this.showEditEmployeeModal = false;
+    this.editEmployeeId = '';
+    this.editEmployee = {};
   }
+
+  submitEditEmployee(): void {
+    const authToken = localStorage.getItem('authToken');
+    
+    if (this.editEmployeeId === '') {
+      console.error('No employee ID found. Cannot edit employee.');
+      return;
+    }
+
+    if (!authToken) {
+      console.error('No authToken found. User is not authenticated.');
+      return;
+    }
+
+    const headers = new HttpHeaders({
+      // Add the authToken to the Authorization header
+      Authorization: `Bearer ${authToken}`
+    });
+
+    const mutation = `
+      mutation UpdateEmployee(
+        $id: ID!,
+        $first_name: String,
+        $last_name: String,
+        $email: String,
+        $gender: String,
+        $designation: String,
+        $salary: Float,
+        $date_of_joining: String,
+        $department: String,
+        $employee_photo: String
+        ) {
+        updateEmployee(
+          id: $id,
+          first_name: $first_name,
+          last_name: $last_name,
+          email: $email,
+          gender: $gender,
+          designation: $designation,
+          salary: $salary,
+          date_of_joining: $date_of_joining,
+          department: $department,
+          employee_photo: $employee_photo
+        ) {
+          id
+          first_name
+          last_name
+          email
+          gender
+          designation
+          salary
+          date_of_joining
+          department
+          employee_photo
+          created_at
+          updated_at
+        }
+      }
+    `;
+
+    const payload = {
+      query: mutation,
+      variables: {
+        id: this.editEmployeeId,
+        first_name: this.editEmployee.first_name,
+        last_name: this.editEmployee.last_name,
+        email: this.editEmployee.email,
+        gender: this.editEmployee.gender,
+        designation: this.editEmployee.designation,
+        salary: this.editEmployee.salary,
+        date_of_joining: this.editEmployee.date_of_joining,
+        department: this.editEmployee.department,
+        employee_photo: this.editEmployee.employee_photo
+      }
+    };
+
+    if (
+      !this.editEmployee.first_name &&
+      !this.editEmployee.last_name &&
+      !this.editEmployee.email &&
+      !this.editEmployee.gender &&
+      !this.editEmployee.designation &&
+      !this.editEmployee.salary &&
+      !this.editEmployee.date_of_joining &&
+      !this.editEmployee.department
+    ) {
+      alert('No fields to update.');
+      return;
+    }
+
+    this.http.post(this.apiUrl, payload, { headers }).subscribe({
+      next: (response: any) => {
+        if (response.data) {
+          alert('Employee updated successfully!');
+          this.closeEditEmployeeModal();
+          this.fetchEmployees(); // Refresh the employee list
+        } else {
+          alert('Failed to update employee.');
+        }
+      },
+      error: (error) => {
+        console.error('Error updating employee:', error.message);
+        alert('An error occurred while updating the employee.');
+      }
+    });
+  }
+
+  // Update Existing employee - End
+
+  // Delete Existing employee - Begin
+
+  openDeleteEmployeeModal(employeeId: string): void {
+    this.showAddEmployeeModal = false;
+    this.deleteEmployeeId = employeeId;
+    this.showEditEmployeeModal = false;
+    this.showDeleteEmployeeModal = true;
+  }
+
+  closeDeleteEmployeeModal(): void {
+    this.showDeleteEmployeeModal = false;
+    this.deleteEmployeeId = '';
+  }
+
+  submitDeleteEmployee(): void {
+    const authToken = localStorage.getItem('authToken');
+    
+    if (this.deleteEmployeeId === '') {
+      console.error('No employee ID found. Cannot delete employee.');
+      return;
+    }
+
+    if (!authToken) {
+      console.error('No authToken found. User is not authenticated.');
+      return;
+    }
+
+    const headers = new HttpHeaders({
+      // Add the authToken to the Authorization header
+      Authorization: `Bearer ${authToken}`
+    });
+
+    const mutation = `
+      mutation DeleteEmployee(
+        $id: ID!
+        ) {
+        deleteEmployee(
+          id: $id
+        ) {
+          id
+          first_name
+          last_name
+          email
+          gender
+          designation
+          salary
+          date_of_joining
+          department
+          employee_photo
+          created_at
+          updated_at
+        }
+      }
+    `;
+
+    const payload = {
+      query: mutation,
+      variables: {
+        id: this.deleteEmployeeId
+      }
+    };
+
+    this.http.post(this.apiUrl, payload, { headers }).subscribe({
+      next: (response: any) => {
+        if (response.data) {
+          this.closeDeleteEmployeeModal();
+          this.fetchEmployees(); // Refresh the employee list
+        } else {
+          alert('Failed to delete employee.');
+        }
+      },
+      error: (error) => {
+        console.error('Error deleting employee:', error.message);
+        alert('An error occurred while deleting the employee.');
+      }
+    });
+  }
+
+  // Delete Existing employee - End
 }
