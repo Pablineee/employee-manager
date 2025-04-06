@@ -130,6 +130,12 @@ export class EmployeeListComponent {
     
     this.http.post(this.apiUrl, payload, { headers }).subscribe({
       next: (response: any) => {
+        // Ensure there are no errors returned
+        if (response.errors && response.errors.length > 0) {
+          console.error('Failed to add employee: ' + response.errors);
+          return;
+        }
+        
         if (response.data && response.data.employee) {
           this.employees = response.data.employee;
         } else {
@@ -243,6 +249,12 @@ export class EmployeeListComponent {
 
     this.http.post(this.apiUrl, payload, { headers }).subscribe({
       next: (response: any) => {
+        // Ensure there are no errors returned
+        if (response.errors && response.errors.length > 0) {
+          console.error('Failed to add employee: ' + response.errors);
+          return;
+        }
+
         if (response.data) {
           alert('Employee added successfully!');
           this.closeAddEmployeeModal();
@@ -368,6 +380,12 @@ export class EmployeeListComponent {
 
     this.http.post(this.apiUrl, payload, { headers }).subscribe({
       next: (response: any) => {
+        // Ensure there are no errors returned
+        if (response.errors && response.errors.length > 0) {
+          console.error('Failed to add employee: ' + response.errors);
+          return;
+        }
+
         if (response.data) {
           alert('Employee updated successfully!');
           this.closeEditEmployeeModal();
@@ -449,6 +467,12 @@ export class EmployeeListComponent {
 
     this.http.post(this.apiUrl, payload, { headers }).subscribe({
       next: (response: any) => {
+        // Ensure there are no errors returned
+        if (response.errors && response.errors.length > 0) {
+          console.error('Failed to add employee: ' + response.errors);
+          return;
+        }
+
         if (response.data) {
           this.closeDeleteEmployeeModal();
           this.fetchEmployees(); // Refresh the employee list

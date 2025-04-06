@@ -78,6 +78,13 @@ export class SignupComponent {
     
     this.http.post(apiUrl, payload).subscribe({
       next: (response: any) => {
+        // Ensure there are no errors returned (invalid username/email)
+        if (response.errors && response.errors.length > 0) {
+          console.error('Failed to add employee: ' + response.errors);
+          alert('Username or email already exists!');
+          return;
+        }
+
         if (response.data) {
           alert('Registration successful! Please log in.');
           this.router.navigate(['/login']);
