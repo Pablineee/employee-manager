@@ -53,6 +53,11 @@ export class SignupComponent {
       variables
     };
 
+    if (!this.username || !this.email) {
+      alert('Username and Email fields cannot be empty!');
+      return;
+    }
+    
     this.http.post(apiUrl, payload).subscribe({
       next: (response: any) => {
         if (response.data) {
