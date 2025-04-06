@@ -264,7 +264,7 @@ export class EmployeeListComponent {
 
   openEditEmployeeModal(employee: any): void {
     this.showAddEmployeeModal = false;
-    this.editEmployeeId = employee.employeeId;
+    this.editEmployeeId = employee.id;
     this.existingEmployee = { ...employee };
     this.showEditEmployeeModal = true;
     this.showDeleteEmployeeModal = false;
