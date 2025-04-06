@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
+// Import environment variables
+import { env } from '../../../../src/environments/environment';
+
 @Component({
   selector: 'app-signup',
   standalone: true,
@@ -15,6 +18,7 @@ export class SignupComponent {
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
+  registrationCode: string = '';
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -27,6 +31,11 @@ export class SignupComponent {
 
     if (this.password !== this.confirmPassword) {
       alert('Passwords do not match!');
+      return;
+    }
+
+    if (this.registrationCode !== env.REGISTRATION_CODE) {
+      alert('Invalid registration code!');
       return;
     }
 
