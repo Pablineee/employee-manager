@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class EmployeeListComponent {
   employees: any[] = [];
+  searchCriteria: {department: string } = { department: '' };
   employee: any = {};
   apiUrl: string = 'http://localhost:4000/graphql';
   showAddEmployeeModal: boolean = false;
@@ -84,6 +85,69 @@ export class EmployeeListComponent {
       }
     });
   }
+
+  // Search employees - Begin
+
+  searchEmployees(): void {
+    const authToken = localStorage.getItem('authToken');
+    if (!authToken) {
+      console.error('No authToken found. User is not authenticated.');
+      return;
+    }
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${authToken}`
+    });
+
+    const { department } = this.searchCriteria;
+
+    const payload = {
+      query: `
+        query Employee($designation: String, $department: String) {
+          employee(designation: $designation, department: $department) {
+            id
+            first_name
+            last_name
+            email
+            gender
+            designation
+            salary
+            date_of_joining
+            department
+            employee_photo
+          }
+        }
+      `,
+      variables: {
+        department: department || null
+      }
+    };
+
+    if (department === '' || department === null) {
+      alert('Please enter a department to search.');
+      return;
+    }
+    
+    this.http.post(this.apiUrl, payload, { headers }).subscribe({
+      next: (response: any) => {
+        if (response.data && response.data.employee) {
+          this.employees = response.data.employee;
+        } else {
+          console.error('Invalid response format', response);
+        }
+      },
+      error: (error) => {
+        console.error('Error searching employees', error.message);
+      }
+    });
+  }
+
+  resetSearch(): void {
+    this.searchCriteria = { department: '' };
+    this.fetchEmployees(); // Reload all employees
+  }
+
+  // Search employees - End
 
   // Add new employee - Begin
 

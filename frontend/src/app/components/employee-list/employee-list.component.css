@@ -35,7 +35,7 @@
 
 .header-container h1 {
     margin: 0;
-    font-size: 4rem;
+    font-size: 5rem;
     position: relative;
     font-family: 'Outfit', sans-serif;
     margin-top: 10px;
@@ -52,6 +52,29 @@
     padding: 10px 20px;
     border-radius: 5px;
     margin-right: 25px;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-bar select {
+    padding: 10px;
+    border: 1px solid #2c3e50;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    margin-right: 10px;
+    width: 300px;
+}
+
+.search-bar .btn {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-right: 10px;
 }
 
 table {
@@ -193,7 +216,11 @@ tr:nth-child(even) {
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
+    .header-container h1 {
+        font-size: 4rem;
+    }
+    
     .header-container .btn {
         font-size: 0.5rem;
         padding: 8px 16px;
@@ -203,6 +230,10 @@ tr:nth-child(even) {
 @media (max-width: 495px) {
     .header-container .btn {
         font-size: 0.4rem;
-        padding: 8px 12px;
+        padding: 8px 12px;;
+    }
+
+    .header-container h1 {
+        font-size: 3rem;
     }
 }
