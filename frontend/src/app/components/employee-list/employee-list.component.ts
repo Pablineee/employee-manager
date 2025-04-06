@@ -39,6 +39,12 @@ export class EmployeeListComponent {
     this.fetchEmployees();
   }
 
+  // Validate email format
+  validateEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
   fetchEmployees(): void {
     // Retrieve the authToken from localStorage
     const authToken = localStorage.getItem('authToken');
@@ -174,6 +180,12 @@ export class EmployeeListComponent {
       return;
     }
 
+    // Validate email format
+    if (!this.newEmployee.email || !this.validateEmail(this.newEmployee.email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
     const headers = new HttpHeaders({
       // Add the authToken to the Authorization header
       Authorization: `Bearer ${authToken}`
@@ -301,6 +313,12 @@ export class EmployeeListComponent {
       return;
     }
 
+    // Validate email format
+    if (!this.newEmployee.email || !this.validateEmail(this.newEmployee.email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
     const headers = new HttpHeaders({
       // Add the authToken to the Authorization header
       Authorization: `Bearer ${authToken}`
@@ -382,6 +400,7 @@ export class EmployeeListComponent {
         // Ensure there are no errors returned
         if (response.errors && response.errors.length > 0) {
           console.error('Failed to add employee: ' + response.errors);
+          alert('Please ensure all fields are filled correctly.');
           return;
         }
 
