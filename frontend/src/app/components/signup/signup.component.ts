@@ -29,11 +29,20 @@ export class SignupComponent {
       return;
     }
 
+    // Validate password
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,64}$/;
+    if (!passwordRegex.test(this.password)) {
+      alert('Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.');
+      return;
+    }
+
+    // Check if password and confirmPassword match
     if (this.password !== this.confirmPassword) {
       alert('Passwords do not match!');
       return;
     }
 
+    // Check if registration code is valid
     if (this.registrationCode !== env.REGISTRATION_CODE) {
       alert('Invalid registration code!');
       return;
