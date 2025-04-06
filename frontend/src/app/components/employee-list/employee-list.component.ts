@@ -184,12 +184,12 @@ export class EmployeeListComponent {
         $first_name: String!,
         $last_name: String!,
         $email: String!,
-        $gender: String!,
+        $gender: String,
         $designation: String!,
         $salary: Float!,
         $date_of_joining: String!,
         $department: String!,
-        $employee_photo: String!
+        $employee_photo: String
         ) {
         addEmployee(
           first_name: $first_name,
@@ -237,7 +237,6 @@ export class EmployeeListComponent {
       !this.newEmployee.first_name ||
       !this.newEmployee.last_name ||
       !this.newEmployee.email ||
-      !this.newEmployee.gender ||
       !this.newEmployee.designation ||
       !this.newEmployee.salary ||
       !this.newEmployee.date_of_joining ||
