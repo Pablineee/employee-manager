@@ -31,7 +31,7 @@
               <td class="data">{{ employee.date_of_joining | date: 'yyyy-MM-dd' }}</td>
               <td class="data">{{ employee.department }}</td>
               <td>
-                <button class="btn btn-warning" (click)="openEditEmployeeModal(employee.id)">Update</button>
+                <button class="btn btn-warning" (click)="openEditEmployeeModal(employee)">Update</button>
                 <button class="btn btn-danger" (click)="openDeleteEmployeeModal(employee.id)">Delete</button>
               </td>
             </tr>
@@ -100,13 +100,13 @@
     <h2>Update Employee</h2>
     <form (ngSubmit)="submitEditEmployee()">
       <label>First Name</label>
-      <input type="text" [(ngModel)]="editEmployee.first_name" name="first_name" />
+      <input type="text" [(ngModel)]="editEmployee.first_name" placeholder="{{ existingEmployee.first_name }}" name="first_name" />
 
       <label>Last Name</label>
-      <input type="text" [(ngModel)]="editEmployee.last_name" name="last_name" />
+      <input type="text" [(ngModel)]="editEmployee.last_name" placeholder="{{ existingEmployee.last_name }}" name="last_name" />
 
       <label>Email</label>
-      <input type="email" [(ngModel)]="editEmployee.email" name="email" />
+      <input type="email" [(ngModel)]="editEmployee.email" placeholder="{{ existingEmployee.email }}" name="email" />
 
       <label>Gender</label>
       <select [(ngModel)]="editEmployee.gender" name="gender">
@@ -116,10 +116,10 @@
       </select>
 
       <label>Designation</label>
-      <input type="text" [(ngModel)]="editEmployee.designation" name="designation" />
+      <input type="text" [(ngModel)]="editEmployee.designation" placeholder="{{ existingEmployee.designation }}" name="designation" />
 
       <label>Salary</label>
-      <input type="number" [(ngModel)]="editEmployee.salary" name="salary" />
+      <input type="number" [(ngModel)]="editEmployee.salary" placeholder="{{ existingEmployee.salary }}" name="salary" />
 
       <label>Date of Joining</label>
       <input type="date" [(ngModel)]="editEmployee.date_of_joining" name="date_of_joining" />

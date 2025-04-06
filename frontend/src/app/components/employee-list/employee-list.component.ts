@@ -19,6 +19,7 @@ export class EmployeeListComponent {
   showEditEmployeeModal: boolean = false;
   editEmployeeId: string = '';
   editEmployee: any = {};
+  existingEmployee: any = {};
   showDeleteEmployeeModal: boolean = false;
   deleteEmployeeId: string = '';
   showEmployeeDetailsModal: boolean = false;
@@ -27,6 +28,13 @@ export class EmployeeListComponent {
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
+    const authToken = localStorage.getItem('authToken');
+    if (!authToken) {
+      // Redirect to login page if not authenticated
+      this.router.navigate(['/login']);
+    }
+  
+    // Fetch employees when component is loaded and user is authenticated
     this.fetchEmployees();
   }
 
@@ -190,9 +198,10 @@ export class EmployeeListComponent {
 
   // Update Existing employee - Begin
 
-  openEditEmployeeModal(employeeId: string): void {
+  openEditEmployeeModal(employee: any): void {
     this.showAddEmployeeModal = false;
-    this.editEmployeeId = employeeId;
+    this.editEmployeeId = employee.employeeId;
+    this.existingEmployee = { ...employee };
     this.showEditEmployeeModal = true;
     this.showDeleteEmployeeModal = false;
   }
@@ -200,6 +209,7 @@ export class EmployeeListComponent {
   closeEditEmployeeModal(): void {
     this.showEditEmployeeModal = false;
     this.editEmployeeId = '';
+    this.existingEmployee = {};
     this.editEmployee = {};
   }
 
