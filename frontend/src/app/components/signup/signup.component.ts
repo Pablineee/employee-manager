@@ -91,4 +91,9 @@ export class SignupComponent {
       }
     });
   }
+
+  // TODO: Implement a function to handle user password reset
+  resetPassword(): void {
+    this.router.navigate(['/reset-password']);
+  }
 }
