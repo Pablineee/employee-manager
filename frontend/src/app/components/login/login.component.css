@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
 .login-container {
-    height: 92.4vh;
+    height: 92.6vh;
     background: linear-gradient(to bottom right, #2c3e50, #4a6070);
     position: relative;
     display: flex;
