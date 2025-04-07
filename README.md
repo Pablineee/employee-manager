@@ -65,19 +65,6 @@ A full-stack employee management system with a secure Angular frontend and Apoll
 - Angular CLI
 - MongoDB (local or cloud instance)
 
-### Backend Setup
-```bash
-cd backend
-npm install
-npm run dev
-```
-
-### Frontend Setup
-```bash
-cd frontend
-npm install
-ng serve
-```
 ---
 ## Environment Variables
 ***The following should be stored in the backend's ```.env``` file***
@@ -94,13 +81,28 @@ export const env = {
     REGISTRATION_CODE: 'your_registration_code'
 };
 ```
+
+### Backend Setup
+```bash
+cd backend
+npm install
+npm run dev
+```
+
+### Frontend Setup
+```bash
+cd frontend
+npm install
+ng serve
+```
+
 ---
 ## Future Enhancements
 
-- Add dark mode and theming options
+- Add dark mode and custom theme options
 - Integrate logs & analytics dashboard
 - Expand to support multiple departments/teams
-- Admin dashboard for user management
+- Admin dashboard for user management (RBAC)
 - Mobile responsiveness optimization
 - Unit and integration tests (e.g., Jest)
 - Email templates and notification system
@@ -111,18 +113,6 @@ export const env = {
 ## License
 
 This project is licensed under the [GNU GPLv3 License](LICENSE).
-
----
-
-## Contribution
-
-Contributions are welcome! If you'd like to improve the app, feel free to fork the repository, create a feature branch, and open a pull request.
-
-1. Fork the project
-2. Create your feature branch: `git checkout -b feature/YourFeature`
-3. Commit your changes: `git commit -m 'Add some feature'`
-4. Push to the branch: `git push origin feature/YourFeature`
-5. Open a Pull Request
 
 ---
 
