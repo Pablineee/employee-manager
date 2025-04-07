@@ -49,12 +49,13 @@ A full-stack employee management system with a secure Angular frontend and Apoll
 
 - [ ] **Employee details modal**
 - [ ] **User profile settings**
-- [ ] **Configure CODEOWNERS**
+- [x] **Configure CODEOWNERS**
 - [ ] **Docker containerization** (frontend & backend)
 - [ ] **Email verification**
 - [ ] **Forgot password / email reset functionality**
 - [ ] **Role-Based Access Control (RBAC)** for different user access levels
-- [ ] **CI/CD Pipeline**
+- [x] **CI Pipeline**
+- [ ] **CD Pipeline**
 
 ---
 
