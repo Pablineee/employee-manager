@@ -1,3 +1,6 @@
 */node_modules
 *.env
 **/environment.ts
+frontend/.angular/cache
+frontend/dist
+**.DS_Store
