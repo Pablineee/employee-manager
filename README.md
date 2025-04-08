@@ -47,10 +47,11 @@ A full-stack employee management system with a secure Angular frontend and Apoll
 
 ## Features in Progress
 
+- [ ] **Unit and integration tests**
 - [ ] **Employee details modal**
 - [ ] **User profile settings**
 - [x] **Configure CODEOWNERS**
-- [ ] **Docker containerization** (frontend & backend)
+- [ ] **Docker containerization**
 - [ ] **Email verification**
 - [ ] **Forgot password / email reset functionality**
 - [ ] **Role-Based Access Control (RBAC)** for different user access levels
@@ -105,7 +106,6 @@ ng serve
 - Expand to support multiple departments/teams
 - Admin dashboard for user management (RBAC)
 - Mobile responsiveness optimization
-- Unit and integration tests (e.g., Jest)
 - Email templates and notification system
 - Centralized error logging and monitoring
 
